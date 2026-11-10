@@ -107,3 +107,13 @@
 /* Foutmelding: terracotta in plaats van fel rood */
 #mailerlite-form .ml-error input { border-color: var(--pj-terracotta-dark) !important; }
 #mailerlite-form #mlb2-48344064.ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody .ml-form-checkboxRow.ml-error .label-description p { color: var(--pj-terracotta-dark) !important; }
+
+/* Gsm: knop iets compacter zodat "SCHRIJF JE IN" op één regel blijft */
+@media (max-width: 520px) {
+  #mailerlite-form #mlb2-48344064.ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody .ml-form-embedSubmit button {
+    padding: 16px 24px !important;
+    font-size: 14px !important;
+    letter-spacing: .22em !important;
+  }
+  #mailerlite-form #mlb2-48344064.ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody .ml-form-checkboxRow label p { font-size: 13px !important; }
+}

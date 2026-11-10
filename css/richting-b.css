@@ -48,6 +48,7 @@ h1, h2 {
   margin: 0;
 }
 h1 em, h2 em { font-style: italic; }
+h1, h2 { text-wrap: balance; }   /* geen los woord op de laatste regel */
 h1 { font-size: clamp(48px, 5.6vw, 80px); line-height: 1; }
 h2 { font-size: clamp(36px, 4.2vw, 60px); line-height: 1.08; }
 
@@ -605,32 +606,82 @@ body { isolation: isolate; }
 .js .reveal.is-zichtbaar { opacity: 1; transform: none; }
 
 /* ---------- Tablet en gsm ---------- */
+/* De nevel achter de dozen reikt breder dan het scherm: nooit zijwaarts laten scrollen */
+.hero-wrap { overflow-x: clip; }
+
+/* Tablet liggend en kleine laptop (961–1180px): twee kolommen, maar compacter */
+@media (max-width: 1180px) and (min-width: 961px) {
+  .hero { grid-template-columns: minmax(0, 420px) minmax(0, 560px); padding-bottom: 96px; }
+  .smaak { padding-top: 96px; padding-bottom: 96px; }
+  .smaak__inner { grid-template-columns: minmax(0, 480px) minmax(0, 420px); }
+  .smaak--gespiegeld .smaak__inner { grid-template-columns: minmax(0, 420px) minmax(0, 480px); }
+  .etiket { padding: 36px; }
+  .etiket__nummer { font-size: 84px; }
+}
+
+/* Tablet staand (≤ 960px): alles in één kolom, gecentreerd op dezelfde breedte */
 @media (max-width: 960px) {
+  html { scroll-padding-top: 64px; }
   .header { padding-top: 20px; padding-bottom: 20px; }
 
   .hero,
   .smaak__inner,
   .smaak--gespiegeld .smaak__inner { grid-template-columns: minmax(0, 1fr); justify-items: center; }
-  .hero { padding-top: 24px; padding-bottom: 80px; }
+  .hero { gap: 56px; padding-top: 24px; padding-bottom: 80px; }
+  .hero__tekst { width: 100%; max-width: 560px; }      /* tekst lijnt uit met de dozen eronder */
   .hero__intro { font-size: 17px; }
   .collectie { width: 100%; max-width: 560px; gap: 12px; }
   .collectie__naam { font-size: 10px; letter-spacing: .08em; }
 
-  .verhaal { padding-top: 88px; padding-bottom: 88px; }
+  .verhaal { gap: 32px; padding-top: 88px; padding-bottom: 88px; }
   .verhaal__kolommen { font-size: 17px; }
 
   .smaak { padding-top: 72px; padding-bottom: 72px; }
-  .smaak__beeld, .smaak--gespiegeld .smaak__beeld { order: 0; max-width: 460px; }
-  .etiket { width: 100%; max-width: 460px; }
+  .smaak__inner { gap: 40px; }
+  .smaak__beeld, .smaak--gespiegeld .smaak__beeld { order: 0; max-width: 520px; }
+  .etiket { width: 100%; max-width: 520px; }
 
-  .inschrijven { padding-top: 80px; padding-bottom: 80px; }
+  .inschrijven { gap: 24px; padding-top: 80px; padding-bottom: 80px; }
   .inschrijven__logo { width: 180px; }
 }
+
+/* Gsm (≤ 520px) */
 @media (max-width: 520px) {
-  .etiket { padding: 32px 24px; }
-  .etiket__nummer { font-size: 76px; }
-  .etiket__naam { font-size: 21px; }
-  .etiket__duo { font-size: 30px; }
-  .kaart { padding: 24px; }
-  .knop { padding: 16px 28px; letter-spacing: .22em; }
+  body { font-size: 16px; }
+  .header { gap: 16px; padding-top: 14px; padding-bottom: 14px; }
+  .header__logo img { width: 120px; }
+  .knop--klein { padding: 10px 16px; font-size: 11px; letter-spacing: .2em; white-space: nowrap; }
+  .knop:not(.knop--klein) { padding: 16px 28px; letter-spacing: .22em; }
+
+  .hero { gap: 44px; padding-top: 16px; padding-bottom: 64px; }
+  .hero__tekst { gap: 22px; }
+  .hero__intro { font-size: 16px; }
+  .collectie { gap: 8px; }
+  .collectie__doos { gap: 12px; }
+  .collectie__naam { font-size: 9px; letter-spacing: .06em; }
+
+  .verhaal { gap: 24px; padding-top: 72px; padding-bottom: 72px; }
+  .verhaal__kolommen { font-size: 16px; text-align: left; }
+
+  .smaak { padding-top: 56px; padding-bottom: 56px; }
+  .smaak__inner { gap: 28px; }
+  .etiket { gap: 14px; padding: 28px 22px; }
+  .etiket__nummer { font-size: 68px; }
+  .etiket__naam { font-size: 19px; letter-spacing: .14em; }
+  .etiket__duo { font-size: 28px; }
+  .etiket__tekst { font-size: 16px; }
+  .etiket__info div { gap: 12px; padding: 14px 0; font-size: 11px; letter-spacing: .1em; }
+  .etiket__info .etiket__bereiding { font-size: 10px; }
+
+  .inschrijven { gap: 20px; padding-top: 64px; padding-bottom: 64px; }
+  .inschrijven__logo { width: 150px; }
+  .inschrijven__intro { font-size: 16px; }
+  .kaart { padding: 24px 20px; }
+
+  .footer { padding-top: 44px; padding-bottom: 88px; }   /* ruimte voor het pijltje "naar boven" */
+}
+
+/* Heel smalle gsm's (≤ 360px) */
+@media (max-width: 360px) {
+  .knop--klein { padding: 9px 12px; letter-spacing: .14em; }
 }
