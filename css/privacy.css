@@ -1,0 +1,104 @@
+/* Petit Jardin · privacy- en GDPR-pagina
+   Bouwt verder op richting-b.css (kleuren, fonts, header, knoppen, footer). */
+
+.privacy-pagina { background: var(--pj-creme); }
+.privacy-pagina .header { position: relative; z-index: 2; }
+
+.privacy {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: calc(760px + var(--pj-gutter) * 2);   /* tekstkolom van 760px + marges */
+  margin: 0 auto;
+  padding: 24px var(--pj-gutter) 96px;
+}
+.privacy__terug { display: inline-flex; gap: 10px; margin-bottom: 48px; }
+.privacy .tekstlink__pijl { transition: transform .5s var(--ease-in-uit, ease); }
+.privacy .tekstlink:is(:hover, :focus-visible) .tekstlink__pijl { transform: translateX(-6px); }
+
+/* kop */
+.privacy__kop { display: grid; gap: 20px; margin-bottom: 40px; }
+.privacy__kop .label { margin: 0; }
+.privacy__kop h1 { margin: 0; font-size: clamp(42px, 5vw, 64px); line-height: 1.04; }
+.privacy__intro { max-width: 620px; margin: 0; font-size: 18px; line-height: 1.7; }
+
+/* notitie: fictief merk */
+.privacy__notitie {
+  display: grid;
+  gap: 10px;
+  margin: 0 0 56px;
+  padding: 28px 32px;
+  background: var(--pj-calque);
+  border: 1px solid rgba(196, 162, 122, .45);
+  border-radius: var(--pj-radius-m);
+}
+.privacy__notitie .label { margin: 0; color: var(--pj-terracotta-dark); }
+.privacy__notitie p:last-child { margin: 0; }
+
+/* genummerde blokken, zoals de N° op de dozen */
+.privacy__lijst { list-style: none; margin: 0; padding: 0; }
+.privacy__blok {
+  display: grid;
+  grid-template-columns: 56px minmax(0, 1fr);
+  gap: 24px;
+  padding: 36px 0;
+  border-top: 1px solid rgba(192, 114, 89, .45);
+  scroll-margin-top: 24px;
+}
+.privacy__nr {
+  font-family: var(--pj-font-detail);
+  font-size: 13px;
+  letter-spacing: .14em;
+  color: var(--pj-terracotta);
+  padding-top: 8px;
+}
+.privacy__blok h2 {
+  margin: 0 0 14px;
+  font-size: clamp(26px, 2.6vw, 32px);
+  line-height: 1.15;
+}
+.privacy__blok p,
+.privacy__blok li { font-size: 17px; line-height: 1.7; }
+.privacy__blok p { margin: 0 0 14px; }
+.privacy__blok p:last-child { margin-bottom: 0; }
+.privacy__blok strong { font-weight: 400; color: var(--pj-bruin); }
+.privacy__blok ul { margin: 0 0 14px; padding: 0; list-style: none; display: grid; gap: 6px; }
+.privacy__blok ul li { position: relative; padding-left: 22px; }
+.privacy__blok ul li::before {   /* klein terracotta bolletje, zoals in het logo */
+  content: "";
+  position: absolute;
+  left: 4px;
+  top: .72em;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--pj-terracotta);
+}
+.privacy a:not(.tekstlink):not(.knop) {
+  color: var(--pj-terracotta-dark);
+  text-underline-offset: 3px;
+}
+
+/* slot */
+.privacy__slot {
+  display: grid;
+  justify-items: start;
+  gap: 20px;
+  padding-top: 40px;
+  border-top: 1px solid rgba(192, 114, 89, .45);
+}
+.privacy__slot .haarlijn { display: none; }
+.privacy__slot p { margin: 0; max-width: 620px; font-size: 16px; color: var(--pj-bruin-70); }
+
+/* footer zonder nevelrand: gewoon crème */
+.privacy-pagina .footer::before { display: none; }
+
+/* gsm */
+@media (max-width: 520px) {
+  .privacy { padding-top: 8px; padding-bottom: 64px; }
+  .privacy__terug { margin-bottom: 32px; }
+  .privacy__intro { font-size: 16px; }
+  .privacy__notitie { padding: 22px 20px; margin-bottom: 40px; }
+  .privacy__blok { grid-template-columns: minmax(0, 1fr); gap: 6px; padding: 28px 0; }
+  .privacy__nr { padding-top: 0; }
+  .privacy__blok p, .privacy__blok li { font-size: 16px; }
+}
